@@ -15,3 +15,11 @@ Mandelbrot.exe生成的计算结果是.Frame后缀名的二进制文件，包含
 使用列优先方式存储，是为了便于matlab读取.Frame文件并渲染（matlab是列优先）。
 
 calMand.cpp以及Mandelbrot.h是Mandelbrot.exe的源代码，只要你修改了源代码中放大的中心点（Center）、迭代次数（Depth）、放大倍率（ratio）、视频的尺寸（Width和Height）、帧的数量（FrameStart和FrameEnd），编译出来的程序就可以计算出你想要的计算结果。
+
+渲染和视频导出由matlab进行。在\MatlabFunction\MandRender 文件夹下有多个可以进行渲染的方法（不过都不是很成熟），视频中我使用的是MandLinerRender和MandDistRender。
+我直接调用的是MandRenderVideo，它根据我提供的路径去读取.Frame文件，调用渲染函数来着色，并输出至名为v的VideoWriter中。VideoWriter需要自己配置，函数只负责输出，这样可以把多段.Frame文件渲染为一个完整的视频片段。
+其他的函数有些用来渲染，有些用来计算，比如MandMap是最普通的计算M集的函数（类似于c艹程序，但它直接返回一个Map数组）。只使用matlab也可以制作视频，但计算过程使用了太多的循环，对matlab来说执行效率可能不太理想，所以最后我还是使用了c艹程序。（我也不会别的语言了）
+
+还有一些其他乱七八糟的函数，懒得写介绍了。
+
+代码水平一般般，勿喷
